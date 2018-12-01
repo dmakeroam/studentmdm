@@ -5,6 +5,7 @@ import com.example.studentmdm.request.StudentRequest;
 import com.example.studentmdm.response.GenericResponse;
 import com.example.studentmdm.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,7 +25,7 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public GenericResponse<Student> updateStudent(@RequestBody StudentRequest request, @PathVariable("id") Long id) throws Exception{
+    public GenericResponse<Student> updateStudent(@Validated @RequestBody StudentRequest request, @PathVariable("id") Long id) throws Exception{
         GenericResponse<Student> response = new GenericResponse<>();
         response.setResponse(studentService.update(request, id));
         response.setIsSuccess(true);
